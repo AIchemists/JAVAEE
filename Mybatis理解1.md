@@ -3,9 +3,9 @@
 ### 自定义类
 最终工具类Executor, Executor需要mapper和connection，其中mapper记录查询语句和返回数据类型，connection创建数据库连接。在代理对象MapperProxy中增强调用Executor，增强方法是获取mapper，mapper的获取方法是由工具类XMLConfigBuilder来读取配置文件，并存入Configuration对象中。  
 总的来说就两件事：查询所有和创建代理对象调用查询所有操作。  
-![image](https://github.com/AIchemists/JAVAEE/blob/master/img/1.png)
-![image](https://github.com/AIchemists/JAVAEE/blob/master/img/2.png)
-![image](https://github.com/AIchemists/JAVAEE/blob/master/img/3.png)
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/1.png)
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/2.png)
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/3.png)
 用注解方式就是获取映射mapper的方法改为通过注解获取方法。  
 ## 表的列名与实体的属性名的对应关系
 windows下的mysql数据库表中的属性名和实体的属性名不区分大小写，但是名称不同的无法自动转换，需要在sql语句中取别名（执行效率）或用ResultMap配置（开发效率）对应关系。  
