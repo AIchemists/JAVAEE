@@ -60,7 +60,7 @@ public interface IUserDao {
 id为方法名称，resultType为返回类型的全限定类名。  
 其中，namespace的值即为持久层接口的位置。  
 注意，该映射文件必须和持久层接口在相同的包中，即二者的路径必须相同。其次，必须以持久层接口名称命名文件名，扩展名是.xml。  
-image 1-1
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/1-1.png)
 #### 2.2.2 编写SqlMapConfig.xml配置文件
 ``` html
 <!-- 配置环境 -->
@@ -110,7 +110,7 @@ image 1-1
   其中，SqlSessionFactory和SqlSession即为Mybatis给我们提供的编写的持久层类。SqlSessionFactory读取了SqlMapConfig.xml中的配置信息，产生真正操作数据库的SqlSession,而SqlSession则用来帮开发者生成持久层接口的代理对象，解析接口的映射文件，通过代理方式执行CRUD操作。  
 ### 2.3 小结
   在这一部分，可以对比传统jdbc和Mybatis框架实现持久层操作的过程，显然Mybatis远比jdbc方便。在这个阶段，我们只用Mybatis创建了持久层接口的映射文件与sql数据库的配置文件，再使用Mybatis提供的持久层类来实现自动代理，即可完成持久层操作。  
-  image2  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/1-2.png) 
   下一阶段将会对这些Mybatis提供的类（SqlSessionFactory、Sqlsession）的工作原理进行解释，但不会写的太详细。
   
  ## 3、自定义Mybatis框架
@@ -146,7 +146,7 @@ Resources提供一个简单的方法，将xml文件读取并得到一个流对�
 
 
 ### 3.3 总体流程
-image3
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/1-3.png)
 在实现这么多类之后，总体上即可完成上一节Mybatis框架所实现的功能，最核心的步骤是：  
 **通过创建出的session对象，调用session中的getMapper方法，完成对持久层接口的动态代理，在代理中通过连接和解析出的配置文件中的持久层方法，通过executor类来执行并返回结果。**
 
