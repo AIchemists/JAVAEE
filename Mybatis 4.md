@@ -13,7 +13,7 @@
 ### 1.1	延迟加载的设置
 当我们查询账户和相关的用户时，使用<association>标签来完成关联查询，配置的resultMap如下:  
 ```html
-<resultMap id="accountUserMap" type="account">
+    <resultMap id="accountUserMap" type="account">
         <id property="id" column="id"></id>
         <result property="uid" column="uid"></result>
         <result property="money" column="money"></result>
@@ -24,7 +24,7 @@
 - select： 填写我们要调用的 select 映射的 id  
 - column ： 填写我们要传递给 select 映射的参数  
 
- 
+ <br>
 另外需要的操作就是在SqlMapConfig.xml文件中添加开启延迟加载的配置。  
 ```html
     <settings>
@@ -32,8 +32,31 @@
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="aggressiveLazyLoading" value="false"></setting>
     </settings>
-    ```
+```
 在配置文件中配置了如上信息后，Mybatis的延迟加载就开启了。  
 其中，aggressiveLazyLoading为false表示在进行关联查询后，每使用一个属性就加载哪个属性。  
 测试：当我们使用关联语句查询账户时，可以看到测试结果：  
-image1
+image1  
+虽然账户类中包含了用户类，但是可以看到只进行了account的查询而没有进行User的查询。  
+<br>
+同样，当我们想要查询用户对象和该用户拥有的所有账户信息时，可以使用<collection>标签来实现一对多的关联查询并完成延迟加载。  
+        
+配置的resultMap如下：  
+```html
+<mapper namespace="com.itheima.dao.IUserDao">
+    <resultMap id="userAccountMap" type="user">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="address" column="address"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <collection property="accounts" ofType="account" select="com.itheima.dao.IAccountDao.findAccountByUid" column="id"></collection>
+    </resultMap>
+```
+在<collection>标签中
+- ofType 用于指定集合元素的数据类型   
+- select 是用于指定查询账户的唯一标识（账户的 dao 全限定类名加上方法名称）   
+- column 是用于指定使用哪个字段的值作为条件查询  
+同样，当我们查询所有用户时，我们可以发现并没有加载Account信息。  
+        
+
