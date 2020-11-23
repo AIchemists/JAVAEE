@@ -15,7 +15,7 @@ Mybatis的数据源分为三类：
 所谓数据源可以理解为使用连接池技术来更好的管理数据库连接。   
 
 PS:在本次课程学习中，采用的都是POOLED数据源。  
-image1  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/3-1.png)   
   
 ### 1.1	数据源配置
 在SqlMapConfig.xml的<environments>中配置数据源  
@@ -45,7 +45,8 @@ System.out.println(list.size());
 **在上述代码中，只有当sqlSession执行selectList时候，connection才创建出来。
 可以只写属性名）。**  
 根据分析PooledDataSource的源代码，可得PooledDataSource得工作原理如下：  
-image2  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/3-2.png)  
+
 ### 1.4 小结
 由此可知，真正打开数据库连接的时间点是代码执行sql语句的时候，也就是说当我们真正要访问数据库的时候才会获取并打开连接，用完了就再立即将数据库连接归还到连接池中，这样很大的节省了连接池资源。
 ## 2、Mybatis 的事务控制
@@ -54,14 +55,14 @@ image2
 `sqlsession.commit();`
 来进行事务的提交，否则对数据库进行的操作无法提交到数据库。  
 Mybatis框架的事务控制方式，本身是用 JDBC 的`setAutoCommit()`方法来设置事务提交方式的。  
-image3  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/3-3.png)  
 在自动提交模式下，所有的Sql语句被执行时作为单个事务提交。  
 
 ### 2.2 设置自动提交事务
 事实上，需要执行sqlsession.commit();来手动提交事务的原因是我们每次从连接池中取出连接，都会将调用` connection.setAutoCommit(false)`方法，而设置自动提交事务的方法即在创建Sqlsession时，传入一个true作为参数：  
 `session = factory.openSession(true);`  
 这个参数传入后，会将autoCommit的值设为true并传给连接。  
-image4  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/3-4.png)   
 此时，不需要再手动提交事务sqlsession.commit();事务也能自动的提交了。  
 ## 3、Mybatis的动态SQL语句
 ### 3.1 <if>标签
@@ -146,7 +147,7 @@ where id = #{uid}
 ## 4、Mybatis的多表查询
 视频中所使用的案例为为简单的用户和账户的模型来分析 Mybatis 多表关系。用户为 User 表，账户为Account 表。一个用户（User）可以有多个账户（Account）。  
 具体关系如下：  
-  iamge4
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/3-5.png)  
   
   ### 4.1 一对一查询
 因为一个账户信息只能供某个用户使用，所以从查询账户信息出发关联查询用户信息为一对一查询。有两种方式实现。
