@@ -71,7 +71,8 @@ Mybatis与Jdbc相比，首先mybatis可通过在SqlMapConfig.xml中配置数据�
 ## 2、Mybatis 的输出结果封装
 ### 2.1数据库列名和实体属性名称不一致
 当数据库列名和实体属性名称不一致时，执行查询所有操作，得到的结果如下。  
-![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/2-1.png)
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/2-1.png)  
+
 只有userName有值的原因是，mysql数据库不区分大小写，因此username可以转为userName，但是可以看到其他名称不同的属性都无法转化,有以下两种解决方法。
 
 ### 2.2 使用别名查询
