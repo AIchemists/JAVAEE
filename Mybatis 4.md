@@ -24,15 +24,17 @@
 - select： 填写我们要调用的 select 映射的 id  
 - column ： 填写我们要传递给 select 映射的参数  
 
- <br>
+<br>
 另外需要的操作就是在SqlMapConfig.xml文件中添加开启延迟加载的配置。  
 ```html
-    <settings>
+<settings>
         <!--开启Mybatis支持延迟加载-->
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="aggressiveLazyLoading" value="false"></setting>
     </settings>
+
 ```
+ 
 在配置文件中配置了如上信息后，Mybatis的延迟加载就开启了。  
 其中，aggressiveLazyLoading为false表示在进行关联查询后，每使用一个属性就加载哪个属性。  
 测试：当我们使用关联语句查询账户时，可以看到测试结果：  
