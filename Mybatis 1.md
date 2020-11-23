@@ -62,7 +62,7 @@ id为方法名称，resultType为返回类型的全限定类名。
 注意，该映射文件必须和持久层接口在相同的包中，即二者的路径必须相同。其次，必须以持久层接口名称命名文件名，扩展名是.xml。  
 image 1-1
 #### 2.2.2 编写SqlMapConfig.xml配置文件
-```
+``` html
 <!-- 配置环境 -->
     <environments default="mysql">
         <!-- 配置mysql的环境-->
@@ -169,7 +169,7 @@ public interface IUserDao {
 在解析dao接口获取mapper的时候，方法名直接获取，返回值则是方法名前的类型,可以解析出来。  
  
 ### 4.3 修改SqlMapConfig.xml
-```
+``` html
 <mappers>
         <mapper class="com.itheima.dao.IUserDao"/>
     </mappers>
