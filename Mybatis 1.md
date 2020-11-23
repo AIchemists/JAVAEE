@@ -42,7 +42,7 @@ Mybatis的优点：
 ### 2.2 Mybatis框架配置实现
 #### 2.2.1 持久层接口与映射文件
 在下载了Mybatis的jar包并添加到pom.xml后，编写持久层的接口  
-```
+```java
 public interface IUserDao {
     List<User> findAll();
     }
@@ -88,7 +88,7 @@ image 1-1
 注意，该处的<mappers>中resource代表使用xml文件映射的方法来实现持久层接口，还有两种写法(class和package)将会在之后阐述。
  
 #### 2.2.3 初步实现Mybatis
- ```
+ ```java
         //1.读取配置文件
         InputStream in = Resources.getResourceAsStream("SqlMapConfig.xml");
         //2.创建SqlSessionFactory工厂
@@ -153,14 +153,14 @@ image3
 ## 4、基于注解的Mybatis框架 
 若为基于注解的Mybatis类，则不用创建持久层接口的配置文件来解析函数，而用注解的方法来获取持久层接口中的函数。  
 ### 4.1 定义@Select注解
-```
+```java
 @Retention(RetentionPolicy.RUNTIME) 
 @Target(ElementType.METHOD) 
 public @interface Select
  { String value(); }
 ```
 ### 4.2 注释持久层接口
-```
+```java
 public interface IUserDao {
     @Select("select * from user")
     List<User> findAll();
