@@ -37,7 +37,7 @@
 在配置文件中配置了如上信息后，Mybatis的延迟加载就开启了。  
 其中，aggressiveLazyLoading为false表示在进行关联查询后，每使用一个属性就加载哪个属性。  
 测试：当我们使用关联语句查询账户时，可以看到测试结果：  
-image1  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/4-1.png)   
 虽然账户类中包含了用户类，但是可以看到只进行了account的查询而没有进行User的查询。  
 
 同样，当我们想要查询用户对象和该用户拥有的所有账户信息时，可以使用<collection>标签来实现一对多的关联查询并完成延迟加载。  
@@ -59,7 +59,7 @@ image1
 - select 是用于指定查询账户的唯一标识（账户的 dao 全限定类名加上方法名称）   
 - column 是用于指定使用哪个字段的值作为条件查询  
 同样，当我们查询所有用户时，我们可以发现并没有加载Account信息。  
-image2  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/4-2.png)     
   
 ### 1.2	小结
 在这部分中，学习了如何用延迟加载策略来提高持久层操作的效率，在SqlMapConfig.xml中配置打开延迟缓存之后，通过持久层接口映射文件resultMap中的<association>和<collection>标签来实现支持一对一、一对多和多对多的延迟加载。  
@@ -84,14 +84,14 @@ User user1 = userDao.findById(41);
         System.out.println(user1 == user2);
 ```
 在测试中我们对id为41的用户进行了两次查询，结果如下：  
- image3  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/4-3.png)   
 发现，虽然在上面的代码中查询了两次，但最后只执行了一次数据库操作，这就是 Mybatis 提供的一级缓存在起作用。因为一级缓存的存在，导致第二次查询 id 为 41 的记录时，并没有发出sql语句从数据库中查询数据，而是从同一个session的一级缓存中查询，因此两次查询出来的User是同一个User。  
 #### 2.1.2一级缓存的清除
 如果sqlSession执行了查询操作之后，执行commit操作（执行插入、更新、删除），**则Mybatis会清空 SqlSession 中的一级缓存，这样做的目的为了让缓存中存储的是最新的信息，避免脏读。**   
 
 ### 2.2 Mybatis二级缓存
 与一级缓存不同的是，Mybatis的二级缓存是存在于sessionfactory中的。二级缓存是 mapper 映射级别的缓存，多个 SqlSession 去操作同一个 Mapper 映射的 sql 语句，多个 SqlSession 可以共用二级缓存，二级缓存是跨 SqlSession 的。  
-image4  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/MybatisImage/4-4.png)   
 #### 2.2.1 二级缓存的设置
 与一级缓存不同的是，二级缓存需要手动开启，即Mybatis默认是关闭二级缓存的。  
 首先在SqlMapConfig.xml中开启二级缓存：  
