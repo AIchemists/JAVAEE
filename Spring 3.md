@@ -10,7 +10,7 @@
 ### 1.1	AOP是什么
 AOP：全称是Aspect Oriented Programming，即面向切面编程。就是在多个纵向的流程中将相同的横切逻辑代码抽取出来，将横切逻辑代码与业务逻辑代码分离，解决代码重复和耦合的问题，提高程序的可重用性。  
 简单的说它就是把我们程序重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。  
-image1  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/3-1.png)    
 **作用：** 在程序运行期间，不修改源码对已有方法进行增强。  
 **优势：** 减少重复代码、提高开发效率、维护方便。  
 AOP术语：  
@@ -22,7 +22,7 @@ AOP术语：
  - Weaving(织入): 是指把增强应用到目标对象来创建新的代理对象的过程。  
  - Aspect(切面): 是切入点和通知的结合。  
  
- image2  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/3-2.png)   
 ### 1.2	AOP解决问题实例
 ```java
 	@Override
@@ -160,7 +160,7 @@ public class Client {
 ### 2.1 必要准备
 使用了与springIOC例子中相同的实体类，业务层和持久层代码。  
 同时，导入AOP的jar包。  
-image3  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/3-3.png)   
 ### 2.2配置通知类
 ```java
 public class Logger {
