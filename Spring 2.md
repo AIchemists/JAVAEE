@@ -120,7 +120,7 @@ spring的注解配置可以与xml配置并存,也可以只使用注解配置。
 ```
 	这样一来，所有没有在xml配置文件中配置的类，都可以通过扫描包与定义类时上面的注解来创建容器。  
 
-### 2.2 spring的纯注解配置
+### 2.3 spring的纯注解配置
 我们发现，现在的xml配置文件中有一句很关键的配置：  
 ```xml
 <!-- 告知spring在创建容器时要扫描的包 -->
@@ -130,7 +130,7 @@ spring的注解配置可以与xml配置并存,也可以只使用注解配置。
 ```
 如果这个声明也能用注解配置，那么就离脱离 xml 文件又进了一步。  
 因此，在纯注解配置下,可以用配置类替代bean.xml,spring容器使用AnnotationApplicationContext类从spring配置类中读取IOC配置，此时，可以将xml文件彻底移除。  
-#### 2.2.1纯注解配置下的注解
+#### 2.3.1纯注解配置下的注解
 `@Configuration`: 用于指定当前类是一个spring配置类,当创建容器时会从该类上加载注解.获取容器时需要使用AnnotationApplicationContext(有@Configuration注解的类.class).  
 `@ComponentScan`: 指定spring在初始化容器时要扫描的包,作用和bean.xml 文件中<context:component-scan base-package="要扫描的包名"/>是一样的.   
 其属性如下:  
@@ -144,7 +144,7 @@ spring的注解配置可以与xml配置并存,也可以只使用注解配置。
 `@Import`: 用于导入其他配置类.当我们使用@Import注解之后,有@Import注解的类就是父配置类,而导入的都是子配置类. 其属性如下:  
  - value: 用于指定其他配置类的字节码  
 
-#### 2.2.2纯注解配置实现CRUD
+#### 2.3.2纯注解配置实现CRUD
 **dao层：**  
 ```java
 @Repository("accountDao")
@@ -222,7 +222,7 @@ public class JdbcConfig {
 ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 ```
 如此一来，就实现了完全使用注解的纯注解方法。  
-### 2.3基于XML配置与基于注解配置的比较：  
+### 2.4基于XML配置与基于注解配置的比较：  
 ![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/2-4.png)     
 基于注解的 spring IoC 配置中，bean 对象的特点和基于 XML 配置是一模一样的。  
 ## 3、【掌握】Spring整合Junit
