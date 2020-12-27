@@ -162,7 +162,13 @@ public class Client {
 同时，导入AOP的jar包。  
 image3  
 ### 2.2配置通知类
-image4  
+```java
+public class Logger {
+    public  void printLog(){
+        System.out.println("Logger类中的pringLog方法开始记录日志了。。。");
+    }
+}
+```
 该通知类用于打印日志：计划让其在切入点方法执行之前执行（切入点方法就是业务层方法）。  
 ### 2.3 配置xml文件
 1、首先，在bean.xml中引入约束并将通知类注入Spring容器中  
