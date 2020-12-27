@@ -10,14 +10,14 @@
 在这两个部分的内容中，使用DBAssit作为持久层解决方案，使用c3p0数据源。  
 ### 1.1	必要的准备
 首先，由于使用了dbAssit等等工具，需要导入额外的jar包。  
-![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/2-1.png)  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/2-1.png)    
 接着，需要为数据库操作的持久层、逻辑层以及实体类编写一些必要的类，如  
 `Account`类作为实体类是被操作的对象；  
 `IAccountDao`是持久层接口，声明CRUD操作；  
 `AccountDaoImpl`类是持久层实际操作的类，实现CRUD方法，在这个类中有一个dbAssit类作为属性，来进行数据库连接。  
 `AccountServiceImpl`类来封装持久层接口，进行数据库操作。  
 	大致项目结构如下。  
-![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/2-2.png)  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/2-2.png)    
 使用ioc完成CRUD操作所需要的几个类如上所述，接下来就是xml的配置部分。  
 
 ### 1.2	xml配置
@@ -85,7 +85,7 @@ ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml"); IAccount
 注入过程:  
 当spring容器中有且只有一个对象的类型与要注入的类型相同时,注入该对象.  
 当spring容器中有多个对象类型与要注入的类型相同时,使用要注入的变量名作为bean的id,在spring 容器查找,找到则注入该对象.找不到则报错.  
-![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/2-3.png)   
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/2-3.png)     
 **出现位置:** 既可以在变量上,也可以在方法上  
 **细节:** 使用注解注入时,set方法可以省略  
 `@Qualifier`: 在自动按照类型注入的基础之上,再按照bean的id注入.  
@@ -223,7 +223,7 @@ ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfigurati
 ```
 如此一来，就实现了完全使用注解的纯注解方法。  
 ### 2.3基于XML配置与基于注解配置的比较：  
-![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/2-4.png)   
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/2-4.png)     
 基于注解的 spring IoC 配置中，bean 对象的特点和基于 XML 配置是一模一样的。  
 ## 3、【掌握】Spring整合Junit
 在上述的代码中，每次进行数据库操作都要先创建一个Service的类。  
