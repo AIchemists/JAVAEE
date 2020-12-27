@@ -1,5 +1,5 @@
 
-### 本篇是本人看完所有Mybatis教程视频后总结的内容
+
 # Mybatis框架学习2——Mybatis与Sql
 主要学习内容：
  - Mybatis框架sql语句的传参与结果封装
