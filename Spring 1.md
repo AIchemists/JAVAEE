@@ -46,9 +46,9 @@ private IAccountDao accountDao = new AccountDaoImpl();
 在实际开发中可以把三层的对象的全类名都使用配置文件保存起来,当启动服务器应用加载的时候,创建这些对象的实例并保存在容器中. 在获取对象时,不使用new的方式,而是直接从容器中获取,这就是工厂设计模式。这个读取配置文件，创建和获取三层对象的类就是工厂。  
 工厂负责给我们从容器中获取指定对象的类。这时候我们获取对象的方式发生了改变。  
 之前我们在获取对象时，都是采用 new 的方式。是主动的。  
-image1  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/1-1.png)    
 现在我们获取对象时，同时跟工厂（容器）获取，有工厂为我们查找或者创建对象，是被动的。  
-image2  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/1-2.png)   
 这种被动接收的方式（由主动变被动）获取对象的思想就是控制反转IOC，它是spring框架的核心之一。  
 
 ### 1.3 Spring的IOC
@@ -118,7 +118,7 @@ System.out.println("保存了账户");
 可以看到，此时需要我们解决业务层与逻辑层类的耦合关系，添加xml配置文件来进行解耦。  
 ### 2.3 xml配置文件
 首先，创建bean.xml文件：  
-image3  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/1-3.png)     
 给xml文件导入约束：  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -139,7 +139,7 @@ image3
 - class 属性：指定要创建对象的全限定类名  
 这样一来，就完成了Spring IOC的xml文件的配置。  
 整个项目结构如下：  
-image4
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/1-4.png)   
 ### 2.4通过核心容器创建对象
 在代码中创建核心容器，通过核心容器的getBean()方法获取具体对象  
 ```java
@@ -155,9 +155,9 @@ image4
 1、`ClassPathXmlApplicationContext`: 它是从类的根路径下加载配置文件（推荐）。  
 2、`FileSystemXmlApplicationContext`: 它是从磁盘路径上加载配置文件，配置文件可以在磁盘的任意位置。  
 3、`AnnotationConfigApplicationContext`: 读取注解创建容器，当我们使用注解配置容器对象时，需要使用此类来创建 spring 容器。它用来读取注解。  
-image5  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/1-5.png)   
 BeanFactory和ApplicationContext 的区别：  
-image6  
+![image](https://github.com/AIchemists/JAVAEE/blob/master/SpringImg/1-6.png)   
 `ApplicationContext`：它在创建核心容器时，创建对象采取的策略是采用立即加载的方式，也就是说，只要一读取完配置文件就马上创建配置文件中配置的对象。  
 - 单例对象适用  
 - 开发中常采用此接口  
